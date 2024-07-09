@@ -36,7 +36,7 @@ To get started with this project, follow these steps:
 
 2. **Create a virtual environment**:
     ```sh
-    conda create --name myenv python=3.8
+    conda create --name myenv 
     conda activate myenv
     ```
 
@@ -70,17 +70,14 @@ To run the application locally:
 
 ## Model Deployment
 
-The app is deployed on Heroku. The deployment steps include:
+The app is deployed on render. The deployment steps include:
 
 1. Create a `Procfile` with the following content:
     ```sh
     web: python main.py
     ```
 
-2. Push the application to Heroku:
-    ```sh
-    git push heroku main
-    ```
+
 
 ## Contributing
 
