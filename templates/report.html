@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diabetes Prediction Report</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .container {
+            margin-top: 30px;
+        }
+        .report-card {
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 5px;
+        }
+        .result {
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        .out_of_range {
+            color: red;
+            font-weight: bold;
+        }
+        .normal {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Diabetes Prediction Report</h2>
+        <div class="report-card">
+            <ul>
+                {% for feature, info in data.items() %}
+                <li class="{{ info.status }}">
+                    {{ feature.replace('_', ' ').title() }}: {{ info.value }}
+                </li>
+                {% endfor %}
+            </ul>
+            <h3 class="result">Risk Factor: {{ predict_prob }}</h3>
+
+            <h3 class="result">Prediction: {{ prediction_text }}</h3>
+        </div>
+    </div>
+</body>
+</html>

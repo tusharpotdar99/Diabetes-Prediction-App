@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diabetes Prediction App</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .container {
+            margin-top: 30px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Diabetes Prediction App</h2>
+        <form action="/predict" method="post">
+            <div class="form-group">
+                <label for="fasting_blood_glucose">Fasting Blood Glucose : </label>
+                <label for="fasting_blood_glucose"> 70 to 200 (mg/dL)</label>
+                <input type="number" class="form-control" id="fasting_blood_glucose" name="fasting_blood_glucose" min= '70'  max= '200' required>
+            </div>
+            <div class="form-group">
+                <label for="postprandial_blood_glucose">Postprandial Blood Glucose:</label>
+                <label for="postprandial_blood_glucose">80 to 250 </label>
+                <input type="number" class="form-control" id="postprandial_blood_glucose" name="postprandial_blood_glucose" min= '80'  max= '250' required>
+            </div>
+            <div class="form-group">
+                <label for="hba1c">Hemoglobin A1c : </label>
+                <label for="hba1c">4.0 to 10.0 (%)</label>          
+                <input type="number" step="0.1" class="form-control" id="hba1c" name="hba1c" min= '4.0' max= '10.0' required>
+            </div>
+            <div class="form-group">
+                <label for="random_blood_glucose">Random Blood Glucose :</label>
+                <label for="random_blood_glucose">70 to 300 (mg/dL) </label>
+                <input type="number" class="form-control" id="random_blood_glucose" name="random_blood_glucose" min= '70' max= '300' required>
+            </div>
+            <div class="form-group">
+                <label for="bmi">Body Mass Index : </label>
+                <label for="bmi">15 to 40 (BMI)</label>
+                <input type="number" step="1" class="form-control" id="bmi" name="bmi" min='15' max='40' required>
+            </div>
+            <div class="form-group">
+                <label for="waist_circumference">Waist Circumference :</label>
+                <label for="waist_circumference">30 to 50 (inches):</label>
+                <input type="number" step="1" class="form-control" id="waist_circumference" name="waist_circumference" min= '30' max='50' required>
+            </div>
+            <div class="form-group">
+                <label for="triglyceride_levels">Triglyceride Levels :</label>
+                <label for="triglyceride_levels">50 to 300 (mg/dL):</label>
+
+                <input type="number" class="form-control" id="triglyceride_levels" name="triglyceride_levels" min='50' max='300' required>
+            </div>
+            <div class="form-group">
+                <label for="blood_pressure_systolic">Systolic Blood Pressure    </label>
+                <label for="blood_pressure_systolic">(90 to 180 mmHg):</label>
+                <input type="number" class="form-control" id="blood_pressure_systolic" name="blood_pressure_systolic" min='90' max='180' required>
+            </div>
+            <div class="form-group">
+                <label for="blood_pressure_diastolic">Diastolic Blood Pressure  </label>
+                <label for="blood_pressure_diastolic">(50 to 120 mmHg):</label>
+
+                <input type="number" class="form-control" id="blood_pressure_diastolic" name="blood_pressure_diastolic" min='50' max='120' required>
+            </div>
+            <div class="form-group">
+                <label for="ldl_cholesterol">LDL Cholesterol :</label>
+                <label for="ldl_cholesterol"> 70 to 200 (mg/dL) </label>
+
+                <input type="number" class="form-control" id="ldl_cholesterol" name="ldl_cholesterol" min=70 max=200 required>
+            </div>
+            <div class="form-group">
+                <label for="hdl_cholesterol">HDL Cholesterol : </label>
+                <label for="hdl_cholesterol">30 to 100 (mg/dL)</label>  
+                <input type="number" class="form-control" id="hdl_cholesterol" name="hdl_cholesterol" min= '30' max='100' required>
+            </div>
+            <div class="form-group">
+                <label for="crp_levels">C-Reactive Protein (CRP) Levels</label>
+                <label for="crp_levels">0.1 to 10.0 (mg/L):</label>
+                <input type="number" step="0.1" class="form-control" id="crp_levels" name="crp_levels" min='0.1' max='10.0' required>
+            </div>
+            <div class="form-group">
+                <label for="insulin_levels">Insulin Levels </label>
+                <label for="insulin_levels">2 to 50 (µIU/mL):</label>
+
+                <input type="number" class="form-control" id="insulin_levels" name="insulin_levels" min='2' max='50' required>
+            </div>
+            <div class="form-group">
+                <label for="homa_ir">HOMA-IR:</label>
+                <label for="homa_ir">0.5 to 5.0 </label>
+
+                <input type="number" step="0.1" class="form-control" id="homa_ir" name="homa_ir" min= '0.5' max= '5.0' required>
+            </div>
+            <div class="form-group">
+                <label for="ogtt">Oral Glucose Tolerance Test 70 to 300 (mg/dL):</label>
+                <input type="number" class="form-control" id="ogtt" name="ogtt" min= '70' max= '300' required>
+            </div>
+            <div class="form-group">
+                <label for="creatinine_levels">Creatinine Levels  0.5 to 2.0 (mg/dL):</label>
+                <input type="number" step="0.1" class="form-control" id="creatinine_levels" min= '0.5' max= 2.0 name="creatinine_levels" required>
+            </div>
+            <div class="form-group">
+                <label for="egfr">Estimated Glomerular Filtration Rate (eGFR) 30 to 120 (mL/min/1.73 m²):</label>
+                <input type="number" class="form-control" id="egfr" name="egfr" min= '30' max= '120' required>
+            </div>
+            <div class="form-group">
+                <label for="microalbuminuria">Microalbuminuria (0 to 300 mg/g):</label>
+                <input type="number" class="form-control" id="microalbuminuria" name="microalbuminuria" min='0' max='300' required>
+            </div>
+            <div class="form-group">
+                <label for="uric_acid_levels">Uric Acid Levels (2 to 10 mg/dL):</label>
+                <input type="number" class="form-control" id="uric_acid_levels" name="uric_acid_levels" min='2' max='10' required>
+            </div>
+            <div class="form-group">
+                <label for="fructosamine_levels">Fructosamine Levels  (100 to 400 µmol/L):</label>
+                <input type="number" class="form-control" id="fructosamine_levels" name="fructosamine_levels" min='100' max='400' required>
+            </div>
+            <div class="form-group">
+                <label for="alt">ALT   (5 to 100 units/L):</label>
+                <input type="number" class="form-control" id="alt" name="alt" min='5' max='100' required>
+            </div>
+            <div class="form-group">
+                <label for="ast">AST   ( 5 to 80 units/L):</label>
+                <input type="number" class="form-control" id="ast" name="ast" min='5' max='80' required>
+            </div>
+            <div class="form-group">
+                <label for="c_peptide">C-Peptide (0.1 to 5.0 ng/mL):</label>
+                <input type="number" step="0.1" class="form-control" id="c_peptide" name="c_peptide" min='0.1' max='5.0' required>
+            </div>
+            <div class="form-group">
+                <label for="proinsulin_levels">Proinsulin Levels (1 to 20 pmol/L):</label>
+                <input type="number" class="form-control" id="proinsulin_levels" name="proinsulin_levels" min='1' max='20' required>
+            </div>
+            <div class="form-group">
+                <label for="family_history_of_diabetes">Family History of Diabetes:</label>
+                <select class="form-control" id="family_history_of_diabetes" name="family_history_of_diabetes" required>
+                    <option value="Yes">Yes</option>
+                    <option value="No" selected>No</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="gestational_diabetes">Gestational Diabetes:</label>
+                <select class="form-control" id="gestational_diabetes" name="gestational_diabetes" required>
+                    <option value="Yes">Yes</option>
+                    <option value="No" selected>No</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="pcos">Polycystic Ovary Syndrome (PCOS):</label>
+                <select class="form-control" id="pcos" name="pcos" required>
+                    <option value="Yes">Yes</option>
+                    <option value="No" selected>No</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="hypertension">Hypertension (High Blood Pressure):</label>
+                <select class="form-control" id="hypertension" name="hypertension" required>
+                    <option value="Yes">Yes</option>
+                    <option value="No" selected>No</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="physical_activity">Physical Activity Level:</label>
+                <select class="form-control" id="physical_activity" name="physical_activity" required>
+                    <option value="Yes">Yes</option>
+                    <option value="No" selected>No</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="smoking">Smoking:</label>
+                <select class="form-control" id="smoking" name="smoking" required>
+                    <option value="Yes">Yes</option>
+                    <option value="No" selected>No</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="alcohol_consumption">Alcohol Consumption:</label>
+                <select class="form-control" id="alcohol_consumption" name="alcohol_consumption" required>
+                    <option value="Yes">Yes</option>
+                    <option value="No" selected>No</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="obesity">Obesity:</label>
+                <select class="form-control" id="obesity" name="obesity" required>
+                    <option value="Yes">Yes</option>
+                    <option value="No" selected>No</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="diet">Diet:</label>
+                <select class="form-control" id="diet" name="diet" required>
+                    <option value="Yes">Yes</option>
+                    <option value="No" selected>No</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="sleep_apnea">Sleep Apnea:</label>
+                <select class="form-control" id="sleep_apnea" name="sleep_apnea" required>
+                    <option value="Yes">Yes</option>
+                    <option value="No" selected>No</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
